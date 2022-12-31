@@ -121,6 +121,12 @@ class DocsViewer
     <link rel="icon" href="http://thetheme.io/thedocs/assets/img/favicon.png">
   </head>
 
+  <style>
+    .anchor {
+        display: none;
+    }
+  </style>
+
   <body>
 
     <!-- Navbar -->
@@ -175,7 +181,7 @@ class DocsViewer
             </aside>
           </div>
 
-          <div class="col-md-7 col-xl-7 ml-md-auto py-8">
+          <div class="col-md-7 col-xl-7 ml-md-auto py-6">
              <?php echo $parser->render(); ?>
           </div>
 

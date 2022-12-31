@@ -112,7 +112,7 @@ class DocHeader
         $template =
             '<h%1$s>'.
                 '<a class="permalink" href="?doc=%3$s#%2$s">'.
-                    '<span>§</span>'.
+                    '<span>#</span>'.
                 '</a>'.
                 '<a class="anchor" id="%2$s"></a>';
 
