@@ -1,0 +1,150 @@
+#sidebar .nav-level-0{
+    list-style: none;
+    padding-left: 0;
+    margin:2rem 0.5rem;
+}
+
+#sidebar .nav-level-0 > LI > A{
+    font-weight: 600;
+}
+
+#sidebar .nav-level-0 > LI{
+    margin-bottom: 1rem;
+}
+
+.nav-level-3{
+    display:none;
+}
+
+H1{
+    margin-bottom:2rem;
+}
+
+H2{
+    margin-bottom: 1.5rem;
+}
+
+H3{
+    margin-bottom: 1rem;
+}
+
+#content,
+#sidebar{
+    vertical-align: top;
+}
+
+#content{
+    width: 100%;
+}
+
+#sidebar{
+    min-width: 16rem;
+    background: rgba(0,0,0,0.1);
+}
+
+.sidebar-wrapper{
+    width: 16rem;
+    position: fixed;
+    height: calc(100vh - 4rem);
+    overflow-y: auto;
+}
+
+.content-wrapper{
+    padding:2rem;
+}
+
+PRE{
+    padding:1rem;
+    background: rgba(0,0,0,0.05);
+    border-radius: 4px;
+}
+
+CODE{
+    font-size:100%;
+}
+
+.site-header {
+    background-color: rgba(0, 0, 0, .85);
+    backdrop-filter: saturate(180%) blur(20px);
+}
+.site-header a {
+    color: #999;
+    transition: ease-in-out color .15s;
+}
+.site-header a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar{
+    height:4rem;
+}
+
+#scaffold{
+    margin-top:4rem;
+}
+
+A{
+    color:#3269a5;
+}
+A.anchor{
+    position:relative;
+    display:block;
+    top:-4rem;
+    visibility: hidden;
+}
+
+H1,H2,H3,H4,H5{
+    margin-left: -1.2rem;
+}
+H1:hover .permalink > SPAN,
+H2:hover .permalink > SPAN,
+H3:hover .permalink > SPAN,
+H4:hover .permalink > SPAN,
+H5:hover .permalink > SPAN{
+    visibility: visible;
+}
+A.permalink{
+    float: left;
+    text-decoration: none;
+    margin-right: 0.2rem;
+}
+
+A.permalink > SPAN{
+    visibility: hidden;
+}
+
+BLOCKQUOTE{
+    margin-left: 2rem;
+    background: #e7f1d0;
+    padding:0.5rem;
+    border-radius: 4px;
+}
+
+BLOCKQUOTE > P:last-child{
+    margin-bottom: 0;
+}
+
+/* ------------------------------------------------------------------
+   SYNTAX HIGHLIGHTING
+--------------------------------------------------------------------- */
+
+PRE CODE{color: #465760;}
+PRE .kw1 {color: #E06645; }
+PRE .kw2 {color: #2778b3; }
+PRE .kw3 {color: #E06645;}
+PRE .kw4 {color: #E06645;}
+PRE .co0 {color: #808080; font-style: italic;}
+PRE .co1 {color: #808080; font-style: italic;}
+PRE .co2 {color: #808080; font-style: italic;}
+PRE .coMULTI {color: #808080; font-style: italic;}
+PRE .es0 {color: #EEBE5B; }
+PRE .br0 {color: #717171;}
+PRE .sy0 {color: #465760;}
+PRE .st0 {color: #47B340;}
+PRE .st_h {color: #47B340;}
+PRE .nu0 {color: #cc66cc;}
+PRE .me1 {color: #0085CD;}
+PRE .me2 {color: #0085CD;}
+PRE .re0 {color: #8594A8;}
+PRE .re1 {color: #0085CD;}

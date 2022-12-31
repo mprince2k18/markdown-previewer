@@ -1,0 +1,25 @@
+{
+  "name": "mprince2k18/markdown-previewer",
+  "description": "PHP based viewer for Markdown files, to view them with fenced code highlighting and navigation.",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mohammad Prince",
+      "email": "mprince2k16@gmail.com"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "src"
+    ]
+  },
+  "require": {
+    "erusev/parsedown": ">=1.7.4",
+    "erusev/parsedown-extra": ">=0.8.1",
+    "twbs/bootstrap": "^5.2.3",
+    "components/jquery": "^3.6.0",
+    "mistralys/application-utils": "^2.2.8",
+    "php": "^8.0"
+  }
+}
