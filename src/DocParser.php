@@ -104,22 +104,31 @@ class DocParser
         return $line;
     }
 
+    /**
+     * It finds all the headers in the document, creates a DocHeader object for each one, and then
+     * replaces the header in the document with a link to the header
+     */
     private function parseHeaders() : void
     {
+        /* Using a regular expression to find all the headers in the document. */
         preg_match_all('%<h([0-9])\b[^>]*>(.*?)</h[0-9]>%si', $this->html, $result, PREG_PATTERN_ORDER);
 
         $active = array();
         $headers = array();
 
+        /* Parsing the headers of a document. */
         foreach($result[2] as $idx => $title)
         {
+            /* Creating a new DocHeader object. */
             $header = new DocHeader($title, (int)$result[1][$idx], $result[0][$idx]);
 
+            /* Getting the level of the header. */
             $level = $header->getLevel();
 
             $headers[] = $header;
             $active[$level] = $header;
 
+            /* Adding the header to the headers array. */
             if($level === 1) {
                 $this->headers[] = $header;
                 continue;
