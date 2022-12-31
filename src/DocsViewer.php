@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace Mprince\MarkdownViewer;
 
+use Illuminate\Mail\Markdown;
+use Illuminate\Support\Facades\File;
 use AppUtils\OutputBuffering;use AppUtils\OutputBuffering_Exception;
 
 /**
@@ -135,6 +137,8 @@ class DocsViewer
                 <tr>
                     <td id="sidebar">
                         <div class="sidebar-wrapper">
+                            <?php echo Markdown::parse(File::get(base_path('teleman/_sidebar.md'))); ?>
+                            <hr>
                             <?php echo $this->renderMenu($parser->getHeaders()); ?>
                         </div>
                     </td>
@@ -171,6 +175,12 @@ class DocsViewer
         ?>
         <script src="<?php echo $this->vendorURL ?>/components/jquery/jquery.js"></script>
         <script src="<?php echo $this->vendorURL ?>/twbs/bootstrap/dist/js/bootstrap.js"></script>
+        <script>
+            const links = document.querySelectorAll('a[href]');
+            links.forEach(link => {
+                link.href = link.href.replace(/\.md$/, '');
+            });
+        </script>
     </body>
 </html><?php
     }
