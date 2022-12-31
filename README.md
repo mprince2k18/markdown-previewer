@@ -7,7 +7,7 @@ way. The layout is based on Bootstrap 4, and does not need any additional config
 
 ## Requirements
 
-- PHP7.3+
+- PHP8.0+
 
 ## Features
 
@@ -25,7 +25,7 @@ will display them.
 
 1) Create a folder in your webroot from which to serve the documentation.
 2) Create a composer project there.
-3) Require the package: `composer require mistralys/markdown-viewer`.
+3) Require the package: `composer require mprince2k18/markdown-previewer`.
 4) Create a PHP file (`index.php`) as endpoint for the documentation.
 5) Paste the following code into the file
 6) Edit the list of files you wish to view.
