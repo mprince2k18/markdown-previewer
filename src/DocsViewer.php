@@ -184,7 +184,7 @@ class DocsViewer
             <aside class="sidebar sidebar-expand-md sidebar-sticky pr-md-4 br-1">
               <ul class="nav nav-sidebar nav-sidebar-hero" data-accordion="true">
                  <?php 
-                  if ($this->spaceName != null) {
+                  if ($this->spaceName != null && File::exists(base_path('files/'. $this->spaceName .'/_sidebar.md'))) {
                       echo Markdown::parse(File::get(base_path('files/'. $this->spaceName .'/_sidebar.md'))); 
                   }
                  ?>
