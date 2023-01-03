@@ -246,7 +246,7 @@ class DocsViewer
                 <?php
                     if (function_exists('getSpaceBySlug')) {
                       if (getSpaceBySlug($this->spaceName)->logo) {
-                        echo '<img class="logo-dark w-75" width="100" src="'. asset(getSpaceBySlug($this->spaceName)->logo ?? "/public/logo.png") .'" alt="'. $this->spaceName .'">';
+                        echo '<img class="logo-dark"src="'. asset(getSpaceBySlug($this->spaceName)->logo ?? "/public/logo.png") .'" alt="'. $this->spaceName .'">';
                       }else {
                         echo ucwords(str_replace('-', ' ', $this->spaceName));
                       }
@@ -255,7 +255,16 @@ class DocsViewer
                     }
                 ?>
               </a><br>
-              © 2019 <a href="http://thetheme.io">TheThemeio</a>.
+              © <?php echo date("Y"); ?> 
+              
+              <b>
+                <?php 
+                if(function_exists('application')) { 
+                  echo application('site_name');
+                }else {
+                    echo 'The Code Studio';
+                } ?>
+            </b>.
             </p>
           </div>
         </div>
