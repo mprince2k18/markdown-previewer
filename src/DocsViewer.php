@@ -255,7 +255,7 @@ class DocsViewer
                     }
                 ?>
               </a><br>
-              © <?php echo date("Y"); ?> 
+              © <?php echo date("Y"); ?> Powered By 
               
               <b>
                 <?php 
