@@ -121,6 +121,14 @@ class DocsViewer
   } else {
       $fav_icon =  env('APP_URL') . '/' ."/favicon.png";
   }
+
+  
+  $current_space_id = getSpaceBySlug($this->spaceName)->id;
+  $current_page_id = getSpaceMenuBySlug($current_space_id, \Illuminate\Support\Facades\Route::current()->parameter('page_slug'))->id;
+
+  $next = space_pagination($this->spaceName, $current_page_id)['next'];
+  $previous = space_pagination($this->spaceName, $current_page_id)['previous'];
+
 ?>
 
 <!DOCTYPE html>
@@ -134,6 +142,7 @@ class DocsViewer
     <title><?php echo $this->title ?></title>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="http://thetheme.io/thedocs/assets/css/page.min.css" rel="stylesheet">
     <link href="http://thetheme.io/thedocs/assets/css/style.css" rel="stylesheet">
 
@@ -147,10 +156,6 @@ class DocsViewer
   <style>
     .anchor {
         display: none;
-    }
-
-    .nav-level-1{
-      font-size: 12px;
     }
   </style>
 
@@ -220,11 +225,54 @@ class DocsViewer
 
           <div class="col-md-7 col-xl-7 ml-md-auto py-6">
              <?php echo $parser->render(); ?>
+
+              <div class="row">
+
+               <?php if($previous != null) {?>
+                <div class="col-md-<?php echo ($next == null) ? 12 : 6; ?>">
+                  <a href="<?php echo route('space.page', ['v' . getSpaceBySlug($this->spaceName)->version ?? "1.0", $this->spaceName, getSpaceMenuById($previous)->slug]); ?>">
+                    <div class="card border">
+                      <div class="card-body d-flex justify-content-between">
+                        <div>
+                            <i class="fa fa-long-arrow-left"></i>
+                        </div>
+                        <div>
+                          Previous
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div> 
+                <?php } ?> 
+
+
+                <?php if($next != null) {?>
+
+                <div class="col-md-<?php echo ($previous == null) ? 12 : 6; ?>">
+                  <a href="<?php echo route('space.page', ['v' . getSpaceBySlug($this->spaceName)->version ?? "1.0", $this->spaceName, getSpaceMenuById($next)->slug]); ?>">
+                    <div class="card border">
+                        <div class="card-body d-flex justify-content-between">
+                          <div>
+                            Next 
+                          </div>
+                          <div>
+                              <i class="fa fa-long-arrow-right"></i>
+                          </div>
+                        </div>
+                    </div>
+                  </a>
+                  
+                </div>
+                
+                <?php } ?>
+            </div>
+
           </div>
 
           <div class="col-md-2 col-xl-2">
             <hr class="d-md-none my-0">
             <aside class="sidebar">
+              <strong>ON THIS PAGE</strong>
                 <ul class="nav nav-sidebar nav-sidebar-hero" data-accordion="true">
                     <?php echo $this->renderMenu($parser->getHeaders()); ?>
                 </ul>
