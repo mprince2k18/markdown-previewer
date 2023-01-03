@@ -54,8 +54,9 @@ $manager->addFile('Title of the file', '/path/to/documentation.md');
 // The viewer needs to know the URL to the vendor/ folder, relative
 // to the script. This is needed to load the clientside dependencies,
 // like jQuery and Bootstrap.
-(new DocsViewer($manager, '/url/to/vendor'))
+(new DocsViewer($manager, 'vendor'))
     ->setTitle('Documentation')
+    ->setSpaceName('The Code Studio')
     ->display();
 ```
 

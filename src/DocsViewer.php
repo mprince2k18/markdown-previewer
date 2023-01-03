@@ -27,6 +27,7 @@ class DocsViewer
 
     private string $title = 'Documentation';
     private string $menuLabel = 'Available documents';
+    private string $spaceName = '';
     private DocsManager $docs;
     private bool $darkMode = false;
     private string $vendorURL;
@@ -94,6 +95,12 @@ class DocsViewer
     public function getActiveFile() : DocFile
     {
         return $this->docs->getByID($this->getActiveFileID());
+    }
+
+    public function setSpaceName(string $space) : DocsViewer
+    {
+        $this->spaceName = $space;
+        return $this;
     }
 
     public function display() : void
@@ -176,7 +183,11 @@ class DocsViewer
             <hr class="d-md-none my-0">
             <aside class="sidebar sidebar-expand-md sidebar-sticky pr-md-4 br-1">
               <ul class="nav nav-sidebar nav-sidebar-hero" data-accordion="true">
-                 <?php echo Markdown::parse(File::get(base_path('teleman/_sidebar.md'))); ?>
+                 <?php 
+                  if ($this->spaceName != null) {
+                      echo Markdown::parse(File::get(base_path('files/'. $this->spaceName .'/_sidebar.md'))); 
+                  }
+                 ?>
               </ul>
             </aside>
           </div>
