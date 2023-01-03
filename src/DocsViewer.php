@@ -114,12 +114,12 @@ class DocsViewer
 
   if (function_exists('getSpaceBySlug')) {
     if (getSpaceBySlug($this->spaceName)->logo) {
-      $fav_icon = asset(getSpaceBySlug($this->spaceName)->logo ?? "/favicon.png");
+      $fav_icon = asset(getSpaceBySlug($this->spaceName)->logo ?? env('APP_URL') . '/' ."/favicon.png");
     }else {
-      $fav_icon =  "/favicon.png";
+      $fav_icon =  env('APP_URL') . '/' ."/favicon.png";
     }
   } else {
-      $fav_icon =  "/favicon.png";
+      $fav_icon =  env('APP_URL') . '/' ."/favicon.png";
   }
 ?>
 
@@ -139,7 +139,7 @@ class DocsViewer
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="http://thetheme.io/thedocs/assets/img/apple-touch-icon.png">
-    <link rel="icon" href="<?php echo env('APP_URL') . '/' .$fav_icon; ?>">
+    <link rel="icon" href="<?php echo $fav_icon; ?>">
 
     
   </head>
@@ -166,7 +166,7 @@ class DocsViewer
             <?php
                 if (function_exists('getSpaceBySlug')) {
                   if (getSpaceBySlug($this->spaceName)->logo) {
-                    echo '<img class="logo-dark" width="100" src="'. asset(getSpaceBySlug($this->spaceName)->logo ?? "/public/logo.png") .'" alt="'. $this->spaceName .'">';
+                    echo '<img class="logo-dark w-75" width="100" src="'. asset(getSpaceBySlug($this->spaceName)->logo ?? "/public/logo.png") .'" alt="'. $this->spaceName .'">';
                   }else {
                     echo ucwords(str_replace('-', ' ', $this->spaceName));
                   }
@@ -246,7 +246,7 @@ class DocsViewer
                 <?php
                     if (function_exists('getSpaceBySlug')) {
                       if (getSpaceBySlug($this->spaceName)->logo) {
-                        echo '<img class="logo-dark" width="100" src="'. asset(getSpaceBySlug($this->spaceName)->logo ?? "/public/logo.png") .'" alt="'. $this->spaceName .'">';
+                        echo '<img class="logo-dark w-75" width="100" src="'. asset(getSpaceBySlug($this->spaceName)->logo ?? "/public/logo.png") .'" alt="'. $this->spaceName .'">';
                       }else {
                         echo ucwords(str_replace('-', ' ', $this->spaceName));
                       }
