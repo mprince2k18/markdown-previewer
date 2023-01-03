@@ -109,6 +109,20 @@ class DocsViewer
 
 ?>
 
+
+<?php
+
+  if (function_exists('getSpaceBySlug')) {
+    if (getSpaceBySlug($this->spaceName)->logo) {
+      $fav_icon = asset(getSpaceBySlug($this->spaceName)->logo ?? "/favicon.png");
+    }else {
+      $fav_icon =  "/favicon.png";
+    }
+  } else {
+      $fav_icon =  "/favicon.png";
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -125,7 +139,9 @@ class DocsViewer
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="http://thetheme.io/thedocs/assets/img/apple-touch-icon.png">
-    <link rel="icon" href="http://thetheme.io/thedocs/assets/img/favicon.png">
+    <link rel="icon" href="<?php echo env('APP_URL') . '/' .$fav_icon; ?>">
+
+    
   </head>
 
   <style>
@@ -146,9 +162,18 @@ class DocsViewer
 
         <div class="navbar-left">
           <button class="navbar-toggler" type="button">&#9776;</button>
-          <a class="navbar-brand" href="../index.html">
-            <img class="logo-dark" src="http://thetheme.io/thedocs/assets/img/logo-dark.png" alt="logo">
-            <img class="logo-light" src="http://thetheme.io/thedocs/assets/img/logo-light.png" alt="logo">
+          <a class="navbar-brand text-dark" href="#">
+            <?php
+                if (function_exists('getSpaceBySlug')) {
+                  if (getSpaceBySlug($this->spaceName)->logo) {
+                    echo '<img class="logo-dark" width="100" src="'. asset(getSpaceBySlug($this->spaceName)->logo ?? "/public/logo.png") .'" alt="'. $this->spaceName .'">';
+                  }else {
+                    echo ucwords(str_replace('-', ' ', $this->spaceName));
+                  }
+                } else {
+                    echo ucwords(str_replace('-', ' ', $this->spaceName));
+                }
+            ?>
           </a>
         </div>
 
@@ -158,21 +183,18 @@ class DocsViewer
           <ul class="nav nav-navbar">
 
             <li class="nav-item">
-              <a class="nav-link" href="#">Layouts <span class="arrow"></span></a>
-              <nav class="nav">
-                <a class="nav-link" href="../layout/general-1.html">General 1</a>
-                <a class="nav-link" href="../layout/general-2.html">General 2</a>
-                <a class="nav-link" href="../layout/general-3.html">General 3</a>
-                <a class="nav-link" href="../layout/minimal-1.html">Minimal 1</a>
-                <a class="nav-link" href="../layout/minimal-2.html">Minimal 2</a>
-                <a class="nav-link" href="../layout/one-page-1.html">One Page</a>
-              </nav>
+                <?php
+                  if (function_exists('getSpaceBySlug')) {
+                      echo 'v' . getSpaceBySlug($this->spaceName)->version ?? "1.0";
+                  } else {
+                      echo "v1.0";
+                  }
+                ?>
             </li>
 
           </ul>
         </section>
 
-        <a class="btn btn-sm btn-round btn-success" href="https://themeforest.net/item/thedocs-online-documentation-template/13070884?license=regular&open_purchase_for_item_id=13070884&purchasable=source&ref=thethemeio">Purchase</a>
 
       </div>
     </nav><!-- /.navbar -->
@@ -220,7 +242,19 @@ class DocsViewer
         <div class="row gap-y">
           <div class="col-lg-12 text-center">
             <p>
-              <a href="#"><img src="http://thetheme.io/thedocs/assets/img/logo-dark.png" alt="logo"></a><br>
+              <a href="#">
+                <?php
+                    if (function_exists('getSpaceBySlug')) {
+                      if (getSpaceBySlug($this->spaceName)->logo) {
+                        echo '<img class="logo-dark" width="100" src="'. asset(getSpaceBySlug($this->spaceName)->logo ?? "/public/logo.png") .'" alt="'. $this->spaceName .'">';
+                      }else {
+                        echo ucwords(str_replace('-', ' ', $this->spaceName));
+                      }
+                    } else {
+                        echo ucwords(str_replace('-', ' ', $this->spaceName));
+                    }
+                ?>
+              </a><br>
               © 2019 <a href="http://thetheme.io">TheThemeio</a>.
             </p>
           </div>
