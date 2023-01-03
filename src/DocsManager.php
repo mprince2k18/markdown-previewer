@@ -19,7 +19,7 @@ use AppUtils\FileHelper_Exception;
  * list of files.
  *
  * @package MarkdownViewer
- * @author Sebastian Mordziol <s.mordziol@mistralys.eu>
+ * @author Mohammad Prince <mprince2k16@gmail.com>
  */
 class DocsManager
 {

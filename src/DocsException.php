@@ -16,7 +16,7 @@ use AppUtils\BaseException;
  * Exception class for any exceptions thrown in the package.
  *
  * @package MarkdownViewer
- * @author Sebastian Mordziol <s.mordziol@mistralys.eu>
+ * @author Mohammad Prince <mprince2k16@gmail.com>
  */
 class DocsException extends BaseException
 {

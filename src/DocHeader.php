@@ -19,7 +19,7 @@ use AppUtils\OutputBuffering;
  * among other things.
  *
  * @package MarkdownViewer
- * @author Sebastian Mordziol <s.mordziol@mistralys.eu>
+ * @author Mohammad Prince <mprince2k16@gmail.com>
  */
 class DocHeader
 {

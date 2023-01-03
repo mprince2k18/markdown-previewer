@@ -19,7 +19,7 @@ use AppUtils\OutputBuffering;use AppUtils\OutputBuffering_Exception;
  * list of documents contained in the manager instance.
  *
  * @package MarkdownViewer
- * @author Sebastian Mordziol <s.mordziol@mistralys.eu>
+ * @author Mohammad Prince <mprince2k16@gmail.com>
  */
 class DocsViewer
 {

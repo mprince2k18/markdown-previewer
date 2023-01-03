@@ -19,7 +19,7 @@ use ParsedownExtra;
  * document, and adds some of its own functionality into the mix.
  *
  * @package MarkdownViewer
- * @author Sebastian Mordziol <s.mordziol@mistralys.eu>
+ * @author Mohammad Prince <mprince2k16@gmail.com>
  */
 class DocParser
 {
