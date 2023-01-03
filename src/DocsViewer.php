@@ -132,6 +132,10 @@ class DocsViewer
     .anchor {
         display: none;
     }
+
+    .nav-level-1{
+      font-size: 12px;
+    }
   </style>
 
   <body>
@@ -211,60 +215,14 @@ class DocsViewer
 
 
     <!-- Footer -->
-    <footer class="footer py-5 text-center text-lg-left">
+    <footer class="footer py-5 text-center text-lg-center">
       <div class="container">
         <div class="row gap-y">
-          <div class="col-lg-3 text-center">
+          <div class="col-lg-12 text-center">
             <p>
               <a href="#"><img src="http://thetheme.io/thedocs/assets/img/logo-dark.png" alt="logo"></a><br>
               © 2019 <a href="http://thetheme.io">TheThemeio</a>.
             </p>
-            <div class="social mt-3">
-              <a class="social-facebook" href="#"><i class="fa fa-facebook-official"></i></a>
-              <a class="social-twitter" href="#"><i class="fa fa-twitter"></i></a>
-              <a class="social-github" href="#"><i class="fa fa-github"></i></a>
-            </div>
-            <hr class="d-lg-none">
-          </div>
-
-          <div class="col-6 col-lg">
-            <nav class="nav flex-column">
-              <h6 class="nav-header">Product</h6>
-              <a href="#">Fetures</a>
-              <a href="#">Pricing</a>
-              <a href="#">Support</a>
-              <a href="#">Demo</a>
-            </nav>
-          </div>
-
-          <div class="col-6 col-lg">
-            <nav class="nav flex-column">
-              <h6 class="nav-header">Company</h6>
-              <a href="#">About</a>
-              <a href="#">Mission</a>
-              <a href="#">Team</a>
-              <a href="#">Contact</a>
-            </nav>
-          </div>
-
-          <div class="col-6 col-lg">
-            <nav class="nav flex-column">
-              <h6 class="nav-header">Legal</h6>
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
-              <a href="#">API Terms</a>
-              <a href="#">Insurance</a>
-            </nav>
-          </div>
-
-          <div class="col-6 col-lg">
-            <nav class="nav flex-column">
-              <h6 class="nav-header">Other</h6>
-              <a href="#">Blog</a>
-              <a href="#">Forums</a>
-              <a href="#">Documentation</a>
-              <a href="#">Customers</a>
-            </nav>
           </div>
         </div>
       </div>
