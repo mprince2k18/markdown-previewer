@@ -189,7 +189,7 @@ class DocsViewer
     <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <title><?php echo $this->title ?></title>
+    <title><?php echo ucwords(\Illuminate\Support\Str::slug($this->title, ' ', true)) . ' | ' . ucwords($space_page_slug); ?></title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
