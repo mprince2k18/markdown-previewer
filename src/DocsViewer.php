@@ -178,14 +178,31 @@ class DocsViewer
       justify-content: center;
     }
 
+    .right-sidebar li, 
+    .left-sidebar li {
+      list-style: none;
+    }
+
+    .right-sidebar p {
+      margin: 0;
+    }
+
+    .left-sidebar p {
+      margin: 5px 0;
+    }
+
   </style>
 
   <script>
     "use strict"
 
     function myStyle() {
-      var leftSidebar = document.querySelector('.left-sidebar ul');
-      leftSidebar.classList.add('nav', 'nav-sidebar', 'nav-sidebar-hero');
+
+      var leftSidebarUl = document.querySelector('.left-sidebar ul');
+      leftSidebarUl.classList.add('h5');
+
+      var rightSidebarUl = document.querySelector('.right-sidebar ul');
+      rightSidebarUl.classList.add('toc');
 
     }
   </script>
@@ -303,11 +320,9 @@ class DocsViewer
 
           <div class="col-md-2 col-xl-2">
             <hr class="d-md-none my-0">
-            <aside class="sidebar">
-              <strong>ON THIS PAGE</strong>
-                <ul class="nav nav-sidebar nav-sidebar-hero" data-accordion="true">
-                    <?php echo $this->renderMenu($parser->getHeaders()); ?>
-                </ul>
+            <aside class="sidebar right-sidebar">
+              <strong class="h6 fs-14 font-weight-bold">ON THIS PAGE</strong>
+                  <?php echo $this->renderMenu($parser->getHeaders()); ?>
             </aside>
           </div>
 
