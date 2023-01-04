@@ -282,7 +282,7 @@ class DocsViewer
                             <i class="fa fa-long-arrow-left text-dark"></i>
                         </div>
                         <div>
-                          <small class="text-dark">Previous</small>
+                          <small class="text-muted">Previous</small>
                           <br>
                           <span class="text-dark h6"><?php echo ucwords(getSpaceMenuById($previous)->label); ?></span>
                         </div>
@@ -300,7 +300,7 @@ class DocsViewer
                     <div class="card border">
                         <div class="card-body d-flex justify-content-between">
                           <div>
-                            <small class="text-dark">Next</small>
+                            <small class="text-muted">Next</small>
                             <br>
                             <span class="text-dark h6"><?php echo ucwords(getSpaceMenuById($next)->label); ?></span>
                           </div>
