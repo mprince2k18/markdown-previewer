@@ -124,7 +124,15 @@ class DocsViewer
 
   
   $current_space_id = getSpaceBySlug($this->spaceName)->id;
-  $current_page_id = getSpaceMenuBySlug($current_space_id, \Illuminate\Support\Facades\Route::current()->parameter('page_slug'))->id;
+
+
+  if (\Illuminate\Support\Facades\Route::current()->parameter('page_slug') == null) {
+      $space_page_slug = space_homepage($current_space_id)->slug;
+  }else {
+      $space_page_slug = \Illuminate\Support\Facades\Route::current()->parameter('page_slug');
+  }
+
+  $current_page_id = getSpaceMenuBySlug($current_space_id, $space_page_slug)->id;
 
   $next = space_pagination($this->spaceName, $current_page_id)['next'];
   $previous = space_pagination($this->spaceName, $current_page_id)['previous'];
