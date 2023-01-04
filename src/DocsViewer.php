@@ -137,6 +137,8 @@ class DocsViewer
   $next = space_pagination($this->spaceName, $current_page_id)['next'];
   $previous = space_pagination($this->spaceName, $current_page_id)['previous'];
 
+  $version = 'v' . getSpaceBySlug($this->spaceName)->version ?? "1.0";
+
 ?>
 
 <!DOCTYPE html>
@@ -165,9 +167,30 @@ class DocsViewer
     .anchor {
         display: none;
     }
+
+    .nav-level-1 {
+        font-size: 13px;
+    }
+
+    .icon-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
   </style>
 
-  <body>
+  <script>
+    "use strict"
+
+    function myStyle() {
+      var leftSidebar = document.querySelector('.left-sidebar ul');
+      leftSidebar.classList.add('nav', 'nav-sidebar', 'nav-sidebar-hero');
+
+    }
+  </script>
+
+  <body onload="myStyle()">
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-stick-dark" data-navbar="static">
@@ -175,7 +198,7 @@ class DocsViewer
 
         <div class="navbar-left">
           <button class="navbar-toggler" type="button">&#9776;</button>
-          <a class="navbar-brand text-dark" href="#">
+          <a class="navbar-brand text-dark" href="<?php route('space.page', [$version, $this->spaceName, space_homepage($current_space_id)->slug ?? null]) ?>">
             <?php
                 if (function_exists('getSpaceBySlug')) {
                   if (getSpaceBySlug($this->spaceName)->logo) {
@@ -198,7 +221,7 @@ class DocsViewer
             <li class="nav-item">
                 <?php
                   if (function_exists('getSpaceBySlug')) {
-                      echo 'v' . getSpaceBySlug($this->spaceName)->version ?? "1.0";
+                      echo $version;
                   } else {
                       echo "v1.0";
                   }
@@ -212,7 +235,6 @@ class DocsViewer
       </div>
     </nav><!-- /.navbar -->
 
-
     <!-- Main Content -->
     <main class="main-content">
       <div class="container">
@@ -220,14 +242,12 @@ class DocsViewer
           
           <div class="col-md-3 col-xl-3">
             <hr class="d-md-none my-0">
-            <aside class="sidebar sidebar-expand-md sidebar-sticky pr-md-4 br-1">
-              <ul class="nav nav-sidebar nav-sidebar-hero" data-accordion="true">
+            <aside class="sidebar sidebar-expand-md sidebar-sticky pr-md-4 br-1 left-sidebar">
                  <?php 
                   if ($this->spaceName != null && File::exists(base_path('files/'. $this->spaceName .'/_sidebar.md'))) {
                       echo Markdown::parse(File::get(base_path('files/'. $this->spaceName .'/_sidebar.md'))); 
                   }
                  ?>
-              </ul>
             </aside>
           </div>
 
@@ -241,11 +261,13 @@ class DocsViewer
                   <a href="<?php echo route('space.page', ['v' . getSpaceBySlug($this->spaceName)->version ?? "1.0", $this->spaceName, getSpaceMenuById($previous)->slug]); ?>">
                     <div class="card border">
                       <div class="card-body d-flex justify-content-between">
-                        <div>
-                            <i class="fa fa-long-arrow-left"></i>
+                        <div class="icon-center">
+                            <i class="fa fa-long-arrow-left text-dark"></i>
                         </div>
                         <div>
-                          Previous
+                          <small class="text-dark">Previous</small>
+                          <br>
+                          <span class="text-dark h6"><?php echo ucwords(getSpaceMenuById($previous)->label); ?></span>
                         </div>
                       </div>
                     </div>
@@ -261,10 +283,12 @@ class DocsViewer
                     <div class="card border">
                         <div class="card-body d-flex justify-content-between">
                           <div>
-                            Next 
+                            <small class="text-dark">Next</small>
+                            <br>
+                            <span class="text-dark h6"><?php echo ucwords(getSpaceMenuById($next)->label); ?></span>
                           </div>
-                          <div>
-                              <i class="fa fa-long-arrow-right"></i>
+                          <div class="icon-center">
+                              <i class="fa fa-long-arrow-right text-dark"></i>
                           </div>
                         </div>
                     </div>
@@ -298,7 +322,7 @@ class DocsViewer
         <div class="row gap-y">
           <div class="col-lg-12 text-center">
             <p>
-              <a href="#">
+              <a href="<?php route('space.page', [$version, $this->spaceName, space_homepage($current_space_id)->slug ?? null]) ?>">
                 <?php
                     if (function_exists('getSpaceBySlug')) {
                       if (getSpaceBySlug($this->spaceName)->logo) {
@@ -326,7 +350,6 @@ class DocsViewer
         </div>
       </div>
     </footer><!-- /.footer -->
-
 
     <!-- Scripts -->
     <script src="http://thetheme.io/thedocs/assets/js/page.min.js"></script>
@@ -369,10 +392,10 @@ class DocsViewer
         ?>
         <ul class="nav-level-0">
             <?php
-              foreach ($headers as $header)
-              {
-                  echo $header->render();
-              }
+            foreach ($headers as $header)
+            {
+                echo $header->render();
+            }
             ?>
         </ul>
         <?php
