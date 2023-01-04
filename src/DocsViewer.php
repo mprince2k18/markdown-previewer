@@ -339,9 +339,6 @@ class DocsViewer
   </body>
 </html>
 
-
-
-
 <?php
     }
 
@@ -372,10 +369,10 @@ class DocsViewer
         ?>
         <ul class="nav-level-0">
             <?php
-            foreach ($headers as $header)
-            {
-                echo $header->render();
-            }
+              foreach ($headers as $header)
+              {
+                  echo $header->render();
+              }
             ?>
         </ul>
         <?php
