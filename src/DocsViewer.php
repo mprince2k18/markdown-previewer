@@ -53,6 +53,11 @@ class DocsViewer
         }
     }
 
+    /**
+     * > This function sets the dark mode to true
+     * 
+     * @return DocsViewer The DocsViewer object.
+     */
     public function makeDarkMode() : DocsViewer
     {
         $this->darkMode = true;
@@ -83,6 +88,11 @@ class DocsViewer
         return $this;
     }
 
+    /**
+     * It returns the ID of the file that should be displayed
+     * 
+     * @return string The ID of the active file.
+     */
     public function getActiveFileID() : string
     {
         if(isset($_REQUEST['doc']) && $this->docs->idExists($_REQUEST['doc'])) {
@@ -92,19 +102,35 @@ class DocsViewer
         return $this->docs->getFirstFile()->getID();
     }
 
+    /**
+     * > Returns the active file
+     * 
+     * @return DocFile The active file.
+     */
     public function getActiveFile() : DocFile
     {
         return $this->docs->getByID($this->getActiveFileID());
     }
 
+    /**
+     * `setSpaceName()` sets the space name
+     * 
+     * @param string space The name of the space you want to display.
+     * 
+     * @return DocsViewer The DocsViewer object.
+     */
     public function setSpaceName(string $space) : DocsViewer
     {
         $this->spaceName = $space;
         return $this;
     }
 
+    /**
+     * It will display the page.
+     */
     public function display() : void
     {
+        /* Creating a new DocParser object and passing the active file to it. */
         $parser = new DocParser($this->getActiveFile());
 
 ?>
@@ -112,6 +138,9 @@ class DocsViewer
 
 <?php
 
+  /* Checking if the function getSpaceBySlug exists, if it does, it will check if the space has a logo,
+  if it does, it will set the fav_icon variable to the logo, if not, it will set the fav_icon
+  variable to the default favicon. */
   if (function_exists('getSpaceBySlug')) {
     if (getSpaceBySlug($this->spaceName)->logo) {
       $fav_icon = asset(getSpaceBySlug($this->spaceName)->logo ?? env('APP_URL') . '/' ."/favicon.png");
@@ -123,21 +152,32 @@ class DocsViewer
   }
 
   
+  /* Getting the space id of the current space. */
   $current_space_id = getSpaceBySlug($this->spaceName)->id;
 
 
+  /* Checking if the current page is the homepage or not. If it is the homepage, it will get the
+  homepage slug. If it is not the homepage, it will get the current page slug. */
   if (\Illuminate\Support\Facades\Route::current()->parameter('page_slug') == null) {
       $space_page_slug = space_homepage($current_space_id)->slug;
   }else {
       $space_page_slug = \Illuminate\Support\Facades\Route::current()->parameter('page_slug');
   }
 
+  /* Getting the current page id by using the current space id and the space page slug. */
   $current_page_id = getSpaceMenuBySlug($current_space_id, $space_page_slug)->id;
 
+  /* Getting the next page id from the space_pagination function. */
   $next = space_pagination($this->spaceName, $current_page_id)['next'];
+  /* Getting the previous page id from the space_pagination function. */
   $previous = space_pagination($this->spaceName, $current_page_id)['previous'];
 
+  /* Checking if the space exists and if it does, it will get the version of the space. */
   $version = 'v' . getSpaceBySlug($this->spaceName)->version ?? "1.0";
+
+  $filename = base_path('files/' . \Illuminate\Support\Facades\Route::current()->parameter('space_name') . '/' . \Illuminate\Support\Facades\Route::current()->parameter('page_slug') . '.md');
+
+  $markdown = file_get_contents($filename);
 
 ?>
 
@@ -278,6 +318,13 @@ class DocsViewer
           </div>
 
           <div class="col-md-7 col-xl-7 ml-md-auto py-6">
+             
+            <?php 
+                if (empty($markdown)) {
+                    echo '<h1 class="h1">No Content Found</h1>';
+                }
+            ?>
+
              <?php echo $parser->render(); ?>
 
               <div class="row">
@@ -323,7 +370,7 @@ class DocsViewer
                 </div>
                 
                 <?php } ?>
-            </div>
+              </div>
 
           </div>
 
