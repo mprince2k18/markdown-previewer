@@ -235,7 +235,7 @@ class DocsViewer
 
           <ul class="nav nav-navbar">
 
-            <li class="nav-item">
+            <li class="nav-item text-monospace">
                 <?php
                   if (function_exists('getSpaceBySlug')) {
                       echo $version;
@@ -248,6 +248,15 @@ class DocsViewer
           </ul>
         </section>
 
+        <a class="text-monospace w-100 text-right text-muted" href="<?php echo route('frontend'); ?>" target="_blank">
+          Powered By 
+        <?php 
+          if(function_exists('application')) { 
+            echo application('site_name');
+          }else {
+              echo 'The Code Studio';
+        } ?>
+        </a>
 
       </div>
     </nav><!-- /.navbar -->
